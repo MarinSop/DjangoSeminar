@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <title>Document</title>
+</head>
+<body>
+    <a id="logout" href="/logout/">Odjavi se</a>
+    <div class="predmet-section">
+        <div class="lista-predmeta">
+            <h2>Lista predmeta: </h2>
+            <div class="lista-predmeta-container">
+                {% for p in lista_predmeta %}
+                <span class="lista-predmeta-predmet">{{ p.name }} | Kod: {{ p.kod }} | Program: {{ p.program }} | ECTS: {{ p.ects }}
+                     | Semestar redovni: {{ p.sem_red }} | Semestar izvanredni: {{ p.sem_izv }} | Izborni: {{ p.izborni }}
+                     <a href="/predmet/{{p.id}}">Uredi</a>
+                     <a href="/predmet-stu-list/{{p.id}}">Vidi listu studenta</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dodaj-predmet">
+            <h2>Dodaj predmet</h2>
+            <form method="POST">
+                {{ dodaj_novi_predmet_form.as_p }}
+                {% csrf_token %}
+                <button type="submit" name="dodaj-predmet-btn" value="pred">Dodaj predmet</button>
+            </form>
+        </div>
+    </div>
+    <div class="student-section">
+        <div class="lista-studenta">
+            <h2>Lista studenata:</h2>
+            <div class="lista-studenta-container">
+                {% for s in lista_studenata %}
+                <span class="lista-studenata-student">{{ s.username }}
+                    <a href="/user/{{s.id}}">Uredi</a>
+                    <a href="/user-upisni-list/{{s.id}}">Vidi upisni list</a>
+                </span>
+                {% endfor %}
+            </div>     
+        </div>
+        <div class="dodaj-studenta">
+            <h2>Dodaj studenta</h2>
+            <form method="POST">
+                {{ dodaj_novog_studenta_form.as_p }}
+                {% csrf_token %}
+                <input type="submit" name="dodaj-novog-studenta-btn">
+            </form>
+        </div>
+    </div>
+    <div class="profesor-section">
+        <div class="lista-profesora">
+            <h2>Lista profesora:</h2>
+            <div class="lista-profesora-container">
+                {% for p in lista_profesora %}
+                <span class="lista-profesora-profesor">{{ p.username }}
+                    <a href="/user/{{p.id}}">Uredi</a>
+                </span>
+                {% endfor %}
+            </div>  
+        </div>
+        <div class="dodaj-profesor-section">
+            <div class="dodaj-predmet-profesor">
+                <h2>Dodjeli predmet profesoru</h2>
+                <form method="POST">
+                    {{ dodaj_predmet_profesor_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" name="dodaj-predmet-profesor-btn" value="prof">Dodaj predmet</button>
+                </form>
+            </div>
+            <div class="dodaj-profesora">
+                <h2>Dodaj profesora</h2>
+                <form method="POST">
+                    {{ dodaj_novog_profesora_form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" name="dodaj-novog-profesora-btn" value="prof">Dodaj profesora</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

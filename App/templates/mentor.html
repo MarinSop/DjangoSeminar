@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mentor.css' %}" />
+    <title>Mentor</title>
+</head>
+<body>
+    <a id="logout" href="/logout/">Odjavi se</a>
+    <div class="svi-predmeti">
+        <div class="predmeti-section">
+            <h2>Prijavljeni predmeti:</h2>
+            <div class="svi-predmeti-container">
+                {% for p in subjects %}
+                <span class="svi-predmeti-predmet">{{p.name}}
+                    <a href="/mentor-predmet-list/{{p.id}}/svi">Vidi popis studenata</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

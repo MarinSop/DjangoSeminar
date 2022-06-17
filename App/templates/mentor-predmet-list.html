@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mentor-predmet-list.css' %}" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="links">
+        <a href="/mentor/">Home</a>
+        <a href="/mentor-predmet-list/{{p_id}}/polozili/">Položili</a>
+        <a href="/mentor-predmet-list/{{p_id}}/izgubili-potpis/">Izgubili potpis</a>
+        <a href="/mentor-predmet-list/{{p_id}}/dobili-potpis/">Dobili potpis ali nisu položili</a>
+    </div>
+    <div class="upisani-studenti">
+        <h2>Prijavljeni studenti:</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="upisani-studenti-container">
+                {% for s in students %}
+                <span class="upisani-studenti-student">{{s.student_id}} Status predmeta: {{ s.status }}
+                    <select name="status">
+                        <option selected disabled hidden>Odabir</option>
+                        <option value="polozen">Položio</option>
+                        <option value="izgubio_potpis">Izgubio potpis</option>
+                        <option value="potpis">Dobio potpis ali nije položio</option>
+                    </select>
+                    <button type="submit" name="status-change" value={{s.student_id.id}}>Promijeni status</button>
+                    {% if s.status == 'Upisan' or s.status == 'Dobio potpis ali nije položen' %}
+                        <button type="submit" name="remove" value={{s.id}}>&times;</button>
+                    {% endif %}
+                </span>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

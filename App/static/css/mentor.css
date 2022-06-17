@@ -1,0 +1,39 @@
+html,body {width: 100%; height: 100%; margin: 0;}
+#logout{margin: 10px; display:flex;}
+a, a:link, a:hover, a:active, a:visited
+{
+    margin-left: 10px;
+    text-decoration: none;
+    color:blue;
+}
+
+.svi-predmeti
+{
+    display:flex;
+    flex-direction: column;
+    margin: 10px;
+    overflow: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+}
+.predmeti-section
+{
+    margin: 10px;
+}
+.svi-predmeti-container
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    height: 80vh;
+    display:flex;
+    flex-direction: column;
+}
+.svi-predmeti-predmet
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    padding: 10px;
+}

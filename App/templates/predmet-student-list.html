@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/predmet-student-list.css' %}" />
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <div class="list-section">
+        <h2>Studenti koji su upisani na {{ predmet.name }}</h2>
+        <div class="list-section-container">
+            {% for s in student_list %}
+                <span class="list-section-student">{{ s.username }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

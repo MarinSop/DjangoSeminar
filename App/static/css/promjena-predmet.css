@@ -1,0 +1,17 @@
+a, a:link, a:hover, a:active, a:visited
+{
+    display: flex;
+    margin: 10px;
+    text-decoration: none;
+    color:blue;
+}
+form 
+{
+    margin: 10px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+}
+
+textarea{vertical-align:top;height: 20px;}

@@ -1,0 +1,50 @@
+body,html{width: 100%; height:100%; overflow: hidden;}
+
+.left-right
+{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+}
+.left{width:50%;}
+.right{width: 50%;}
+
+.subjects
+{
+    overflow-y: scroll;
+    height: 80vh;
+    width: 90%;
+    border-width: 1px;
+    border-color: grey;
+    border-style: solid;
+}
+
+.subject
+{
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    padding: 5px;
+}
+
+.upisi
+{
+    overflow-y: scroll;
+    height: 80vh;
+    width: 90%;
+
+}
+
+.sem
+{
+    border-width: 1px;
+    border-color: grey;
+    border-style: solid;
+    min-height: 20px;
+    padding: 0px 5px 0px 5px;
+}
+.sem-predmet
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

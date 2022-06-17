@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/student.css' %}" />
+    <title>Seminar</title>
+</head>
+<body>
+    <a href="/" style="text-decoration: none; color:blue;">Home</a>
+    <div class="left-right">
+        <div class="left">
+            <form method="POST">
+                {% csrf_token %}
+                <h2>Predmeti:</h2>
+                <div class="subjects">
+                    {% for s in subjects %}
+                    <div class="subject">
+                        <button type="submit" name="add" value={{s.id}}>&#43;</button>
+                        <span>{{s.name}}</span><br/>
+                    </div>
+                    {% endfor %}
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <h2>Upisi ({{user.username}}):</h2>
+            <div class="upisi">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for i in range %}
+                    <h3>Semestar {{ i }}:</h3>
+                    <div class="sem">
+                        {% for u in upisi %}
+                        {% if user.status == 'red' %}
+                            {% if u.sem_red == i %}
+                            <div class="sem-predmet">
+                            <button type="submit" name="remove" value="{{u.id}}">&times;</button>
+                            <span>{{ u.name }}</span><br>
+                            </div>  
+                            {% endif %}
+                        {% elif user.status == 'izv' %}
+                            {% if u.sem_izv == i %}
+                            <div class="sem-predmet">
+                            <button type="submit" name="remove" value="{{u.id}}">&times;</button>
+                            <span>{{ u.name }}</span><br>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
